@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Course Page</title>
+	</head>
+	<body>
+		<h1>Add A New Course</h1>
+		<form action='/add' method='post'>
+			{% csrf_token %}
+			Name:<input type='text' name = 'name'>
+			Description:<textarea name='description'></textarea>
+			<input type='submit' vale='Enter new course'>
+		</form>
+
+		<h2>Courses</h2>
+		<table>
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Decription</th>
+					<th>Date_added</th>
+					<th>Actions</th>
+				</tr>
+			</thead>
+
+			<tbody>
+			{%for row in data%}
+				<tr>
+					<td>{{row.name}}</td>
+					<td>{{row.description}}</td>
+					<td>{{row.created_at}}</td>
+					<td><a href="/delete/{{row.id}}">Delete</a></td>
+				</tr>
+			{%endfor%}
+			</tbody>
+		</table>
+	</body>
+</html>

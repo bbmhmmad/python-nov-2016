@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<h1>Are you sure you want to delete the following?</h1>
+		{%if data%}
+			Name: {{data.name}}
+			Description:{{data.description}}
+			<form action='confirm/{{data.id}}' method='post'>
+				{% csrf_token %}
+				<input type='submit' value='NO' name='button'>
+				<input type='submit' value='YES' name='button'>
+			</form>
+		{%endif%}
+
+	</body>
+</html>
