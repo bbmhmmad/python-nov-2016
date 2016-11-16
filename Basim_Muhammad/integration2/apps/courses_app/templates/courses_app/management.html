@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Admin Panel</title>
+	</head>
+	<body>
+	<form action={%url 'courses:management_update' %} method='post'>
+		{% csrf_token %}
+		<select name='course'>
+		{%for row in courses%}
+			<option value={{row.id}}>
+				{{row.name}}
+			</option>
+		{%endfor%}
+		</select>
+
+		<select name='user'>
+		{%for row in users%}
+			<option value={{row.id}}>
+				{{row.email}}
+			</option>
+		{%endfor%}
+		</select>
+
+		<input type='submit' value='Submit Changes'>
+		
+	</form>
+		<table>
+			<thead>
+				<tr>
+					<th>Course</th>
+					<th>Number of Users</th>
+				</tr>
+			</thead>
+			<tbody>
+			{%for row in count %}
+				<tr>
+					<td>{{row.name}}</td>
+					<td>{{row.count}}</td>
+				</tr>
+			{%endfor%}
+			</tbody>
+		</table>
+	</body>
+</html>
